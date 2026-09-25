@@ -1,0 +1,286 @@
+BUSINESS ENTITY RESOLUTION — EDA REPORT
+Phase 1 Analysis
+
+
+============================================================
+  SECTION 1: DATASET SIZES
+============================================================
+--- TRAINING ---
+File          : train_source1.tsv
+Rows          : 2,206,821
+Columns       : ['entity_id', 'business_name', 'business_address', 'country']
+
+  'entity_id' empty: 0 (0.0%)
+  'business_name' empty: 0 (0.0%)
+  'business_address' empty: 0 (0.0%)
+  'country' empty: 0 (0.0%)
+
+  business_name length — min:3 mean:24.0 max:105
+  business_address length — min:11 mean:52.1 max:256
+
+File          : train_source2.tsv
+Rows          : 5,034,616
+Columns       : ['entity_id', 'business_name', 'business_address', 'country']
+
+  'entity_id' empty: 0 (0.0%)
+  'business_name' empty: 2 (0.0%)
+  'business_address' empty: 168,967 (3.4%)
+  'country' empty: 0 (0.0%)
+
+  business_name length — min:0 mean:25.1 max:104
+  business_address length — min:0 mean:46.2 max:249
+
+File          : train_source3.tsv
+Rows          : 5,285,603
+Columns       : ['entity_id', 'business_name', 'business_address', 'country']
+
+  'entity_id' empty: 0 (0.0%)
+  'business_name' empty: 13 (0.0%)
+  'business_address' empty: 175,916 (3.3%)
+  'country' empty: 0 (0.0%)
+
+  business_name length — min:0 mean:25.2 max:123
+  business_address length — min:0 mean:46.7 max:240
+
+--- TEST ---
+File          : test_source1.tsv
+Rows          : 1,732,544
+Columns       : ['entity_id', 'business_name', 'business_address', 'country']
+
+  'entity_id' empty: 0 (0.0%)
+  'business_name' empty: 0 (0.0%)
+  'business_address' empty: 0 (0.0%)
+  'country' empty: 0 (0.0%)
+
+  business_name length — min:3 mean:23.8 max:92
+  business_address length — min:11 mean:57.2 max:268
+
+File          : test_source2.tsv
+Rows          : 4,887,273
+Columns       : ['entity_id', 'business_name', 'business_address', 'country']
+
+  'entity_id' empty: 0 (0.0%)
+  'business_name' empty: 46 (0.0%)
+  'business_address' empty: 129,408 (2.6%)
+  'country' empty: 0 (0.0%)
+
+  business_name length — min:0 mean:25.7 max:102
+  business_address length — min:0 mean:50.4 max:269
+
+File          : test_source3.tsv
+Rows          : 5,082,316
+Columns       : ['entity_id', 'business_name', 'business_address', 'country']
+
+  'entity_id' empty: 0 (0.0%)
+  'business_name' empty: 59 (0.0%)
+  'business_address' empty: 136,098 (2.7%)
+  'country' empty: 0 (0.0%)
+
+  business_name length — min:0 mean:25.7 max:103
+  business_address length — min:0 mean:48.7 max:267
+
+============================================================
+  SECTION 2: COUNTRY DISTRIBUTION
+============================================================
+Source 1 TRAIN:
+  US                   1,323,633  (60.0%)
+  India                 883,188  (40.0%)
+
+Source 2 TRAIN:
+  US                   3,016,817  (59.9%)
+  India                2,017,799  (40.1%)
+
+Source 3 TRAIN:
+  US                   3,170,056  (60.0%)
+  India                2,115,547  (40.0%)
+
+Source 1 TEST:
+  India                 809,986  (46.8%)
+  US                    663,106  (38.3%)
+  France                259,452  (15.0%)
+
+Source 2 TEST:
+  India                2,312,565  (47.3%)
+  US                   1,871,330  (38.3%)
+  France                703,378  (14.4%)
+
+Source 3 TEST:
+  India                2,405,000  (47.3%)
+  US                   1,945,701  (38.3%)
+  France                731,615  (14.4%)
+
+============================================================
+  SECTION 3: GROUND TRUTH ANALYSIS
+============================================================
+Total S1 entities in ground truth : 2,206,821
+
+  Match count distribution (how many S2/S3 matches per S1 entity):
+    0 matches: 123,247 entities (5.6%)
+    1 matches: 119,157 entities (5.4%)
+    2 matches: 375,212 entities (17.0%)
+    3 matches: 530,841 entities (24.1%)
+    4 matches: 484,115 entities (21.9%)
+    5 matches: 321,957 entities (14.6%)
+    6 matches: 164,868 entities (7.5%)
+    7 matches: 63,968 entities (2.9%)
+    8 matches: 18,680 entities (0.8%)
+    9 matches: 4,205 entities (0.2%)
+    10 matches: 534 entities (0.0%)
+    11 matches: 37 entities (0.0%)
+
+  Total matched IDs: 7,638,365
+    From Source 2 (S2-): 3,693,619
+    From Source 3 (S3-): 3,944,746
+
+============================================================
+  SECTION 4: NAME ABBREVIATION ANALYSIS (Source 1 Train)
+============================================================
+  Abbreviation variant analysis (business_name):
+    'pvt' appears 121,462x  |  'private' appears 432,394x
+    'ltd' appears 148,598x  |  'limited' appears 522,340x
+    'corp' appears 34,738x  |  'corporation' appears 14,372x
+    'inc' appears 238,309x  |  'incorporated' appears 8x
+    'co' appears 27,544x  |  'company' appears 13,872x
+    'intl' appears 8x  |  'international' appears 20,751x
+    '&' appears 290x  |  'and' appears 57,296x
+    'mfg' appears 50x  |  'manufacturing' appears 1,716x
+
+  Abbreviation variant analysis (business_name):
+    'pvt' appears 189,270x  |  'private' appears 528,131x
+    'ltd' appears 398,464x  |  'limited' appears 528,795x
+    'corp' appears 141,773x  |  'corporation' appears 62,623x
+    'inc' appears 400,229x  |  'incorporated' appears 26,190x
+    'co' appears 139,561x  |  'company' appears 31,543x
+    'intl' appears 14x  |  'international' appears 25,578x
+    '&' appears 537x  |  'and' appears 118,201x
+    'mfg' appears 113x  |  'manufacturing' appears 3,068x
+
+  Abbreviation variant analysis (business_name):
+    'pvt' appears 220,353x  |  'private' appears 639,861x
+    'ltd' appears 427,781x  |  'limited' appears 673,480x
+    'corp' appears 140,236x  |  'corporation' appears 58,097x
+    'inc' appears 419,917x  |  'incorporated' appears 21,769x
+    'co' appears 143,838x  |  'company' appears 31,866x
+    'intl' appears 26x  |  'international' appears 32,004x
+    '&' appears 551x  |  'and' appears 122,220x
+    'mfg' appears 99x  |  'manufacturing' appears 3,242x
+
+============================================================
+  SECTION 5: TOP NAME TOKENS (Source 1 Train)
+============================================================
+  Top 30 tokens in 'business_name':
+    'limited': 522,305
+    'private': 432,270
+    'llc': 355,736
+    'inc': 190,226
+    'ltd': 122,058
+    '&': 111,583
+    'pvt': 94,923
+    'and': 57,296
+    'care': 52,422
+    'inc.': 48,083
+    'of': 44,497
+    '(india)': 43,993
+    'associates': 41,422
+    'group': 40,338
+    'llp': 39,726
+    'corp': 34,694
+    'center': 34,486
+    'partners': 33,874
+    'services': 30,846
+    'co': 27,613
+    'health': 27,591
+    'pc': 27,151
+    'clinic': 26,916
+    'ltd.': 26,541
+    'pvt.': 26,539
+    'solutions': 26,073
+    'global': 25,264
+    'p.c.': 23,255
+    'trading': 22,721
+    'l.l.c.': 21,843
+
+============================================================
+  SECTION 6: TOP ADDRESS TOKENS (Source 1 Train)
+============================================================
+  Top 30 tokens in 'business_address':
+    'road,': 385,622
+    'street,': 277,566
+    'delhi,': 208,538
+    'unit': 207,085
+    'drive,': 206,386
+    'avenue,': 172,559
+    'maharashtra': 161,674
+    'no.': 140,644
+    'no': 129,351
+    'nagar,': 119,596
+    'tx': 115,403
+    'new': 115,393
+    'floor,': 114,508
+    'delhi': 113,168
+    'city,': 112,176
+    'west': 105,493
+    'pradesh': 95,808
+    'lane,': 95,791
+    'ny': 88,434
+    'mumbai,': 84,025
+    'plot': 82,017
+    'nc': 81,816
+    'road': 77,892
+    'uttar': 75,784
+    'oh': 73,745
+    'il': 65,519
+    'tamil': 63,594
+    'karnataka': 59,085
+    'bangalore,': 58,370
+    'near': 55,819
+
+============================================================
+  SECTION 7: NORMALIZATION SANITY CHECK
+============================================================
+  Sample normalization output:
+
+  RAW  name: Pediatric Medicine PLLC
+  NORM name: pediatric medicine pllc
+  RAW  addr: 4850 20, Otisco, NY
+  NORM addr: 4850 20 otisco ny
+  PIN/ZIP  : None
+  Country  : us
+
+  RAW  name: Fetech National Twin
+  NORM name: fetech national twin
+  RAW  addr: 19034 Woodburn Road, Woodburn, IN
+  NORM addr: 19034 woodburn road woodburn in
+  PIN/ZIP  : 19034
+  Country  : us
+
+  RAW  name: General Design Innovations LLC
+  NORM name: general design innovations llc
+  RAW  addr: 7241 Osage Avenue, Mesa, AZ
+  NORM addr: 7241 osage avenue mesa az
+  PIN/ZIP  : None
+  Country  : us
+
+  RAW  name: Construction Ideaz Papers Private Limited
+  NORM name: construction ideaz papers private limited
+  RAW  addr: Building No.4/606, Prabhul Cottage Karimbalur, Elakamon, Ayiroor P.O., Thiruvananthapuram, Trivandrum, Kerala
+  NORM addr: building no 4 606 prabhul cottage karimbalur elakamon ayiroor p o thiruvananthapuram trivandrum kerala
+  PIN/ZIP  : None
+  Country  : india
+
+  RAW  name: Penaloza and Bittle First Inc.
+  NORM name: penaloza and bittle first incorporated
+  RAW  addr: 4255 Charleswood Avenue, Memphis, TN
+  NORM addr: 4255 charleswood avenue memphis tn
+  PIN/ZIP  : None
+  Country  : us
+
+============================================================
+  SECTION 8: BLOCKING COMPLEXITY ESTIMATE
+============================================================
+  Test S1 entities       : 1,732,544
+  Test S2+S3 records     : 9,969,589
+  Brute-force pairs      : 17,272,751,604,416
+  Target candidates/S1   : ~100–500
+  Target total candidates: ~346,508,800 (estimated)
+  Reduction ratio target : 1.0000
